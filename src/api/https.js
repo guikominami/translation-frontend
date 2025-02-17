@@ -20,6 +20,17 @@ export async function fetchWords(){
   return responseData;
 }
 
+export async function fetchTranslations(){
+  const response = await fetch("http://localhost:3000/api/translations");
+  const responseData = await response.json();
+  
+  if (!response.ok){
+    throw new Error ("Failed to fetch translations.")
+  }
+  
+  return responseData;
+}
+
 // app.use((req, res, next) => {
 //   res.setHeader(); // allow all domains
 //   res.setHeader('Access-Control-Allow-Methods', 'GET, PUT');
