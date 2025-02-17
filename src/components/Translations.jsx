@@ -1,44 +1,44 @@
 import { useState, useEffect } from "react";
 import { fetchTranslations } from "../api/https";
-import { log } from "../log";
 
-export default function Translations(wordId) {
+// eslint-disable-next-line react/prop-types
+export default function Translations({ wordId }) {
   const [translationsData, setTranslationsData] = useState([]);
   const [isFetching, setIsFetching] = useState();
 
   useEffect(() => {
     async function fetchTranslationsData() {
-      log("fetch translation entered");
-
+      
       setIsFetching(true);
 
       try {
         const translation = await fetchTranslations();
         
-        setTranslationsData(
-          translation
-        );
-
-        // setTranslationsData(
-        //   translation.filter((translation) => word.language._id === languageId)
-        // );
+        var i, j
+        for(i = 0; i < translation.length; i++){
+          for(j = 0; j < translation[i].words.length; j++){
+            if (translation[i].words[j]._id === wordId){
+              setTranslationsData(translation[i].words);
+            }
+          }
+        }
       } catch (error) {
         console.log("error: ", error.message);
       }
+      setIsFetching(false);
     }
 
     fetchTranslationsData();
   }, [wordId]);
-
+  
   let content = <p>There is no translations for this word.</p>
   if (translationsData.length > 0){
     content = 
     (
       <ul>
-        {translationsData.map((translation) => (
-          <li key={translation._id}>{translation.words}</li>
+        {translationsData.map((translation) => (translation._id !== wordId &&
+          <li key={translation._id}>{translation.word} - {translation.language.name}</li>
         ))}
-        <li></li>
       </ul>
     )
   }

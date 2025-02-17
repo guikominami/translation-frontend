@@ -3,20 +3,24 @@ import { fetchLanguages } from "../api/https";
 import { useState } from "react";
 import { log } from "../log.js";
 
+// eslint-disable-next-line react/prop-types
 export default function Languages({ onLanguageClick }) {
   const [languagesData, setLanguagesData] = useState([]);
   const [isFetching, setIsFetching] = useState();
 
   useEffect(() => {
     async function fetchLanguagesData() {
-      log("fetch entered");
+
       setIsFetching(true);
+      
       try {
         const languages = await fetchLanguages();
         setLanguagesData(languages);
       } catch (error) {
         console.log("error: ", error.message);
       }
+      
+      setIsFetching(false);
     }
 
     fetchLanguagesData();
