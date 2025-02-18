@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { fetchWords, addWord } from "../api/wordApi";
+import "./Word.css";
 
 // eslint-disable-next-line react/prop-types
 export default function Words({ languageId, onWordClick }) {
@@ -51,7 +52,6 @@ export default function Words({ languageId, onWordClick }) {
             {word.word}
           </li>
         ))}
-        <li></li>
       </ul>
     );
   }
@@ -63,12 +63,12 @@ export default function Words({ languageId, onWordClick }) {
 
   return (
     <div className="list-area">
-      <div>
+      <div className="title">
         <h3>Words</h3>
-        <button>+</button>        
+        <button className="button-add">+</button>      
       </div>
-      <div>
-        <input ref={word} label="add a word" />        
+      <div className="add-list">
+        <input className="input-word" ref={word} label="add a word" />        
         <button onClick={addWord}>Save</button>
       </div>
       {!isFetching && content}

@@ -16,10 +16,31 @@
 
 .list-area{
   width: 25%;
+  background-color: rgb(235, 232, 232);
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-right: 1rem;
+}
+
+.title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button-add{
+  width: 10%;
+  height: 10%;  
 }
 
 .main-area h3{
   margin-bottom: 1rem;
+}
+
+.add-list{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.5rem;
 }
 
 .main-area ul{
@@ -28,6 +49,19 @@
 
 .main-area li{
   margin-bottom: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+}
+
+.main-area li:hover{
+  background-color: rgb(220, 204, 204);
+}
+
+.main.area li:active,
+.main.area li:visited {
+  background-color: rgb(162, 122, 122);
+  color: white;
 }
 
 @media screen and (max-width: 930px) {

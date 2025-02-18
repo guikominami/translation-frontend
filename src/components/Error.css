@@ -1,0 +1,12 @@
+.error {
+  max-width: 40rem;
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.error p {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
