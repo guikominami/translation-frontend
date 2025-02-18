@@ -8,17 +8,20 @@ export default function Translations({ wordId }) {
 
   useEffect(() => {
     async function fetchTranslationsData() {
-      
       setIsFetching(true);
 
       try {
         const translation = await fetchTranslations();
-        
-        var i, j
-        for(i = 0; i < translation.length; i++){
-          for(j = 0; j < translation[i].words.length; j++){
-            if (translation[i].words[j]._id === wordId){
-              setTranslationsData(translation[i].words);
+
+        var i, j;
+        for (i = 0; i < translation.length; i++) {
+          for (j = 0; j < translation[i].words.length; j++) {
+            if (translation[i].words[j]._id === wordId) {
+              setTranslationsData(
+                translation[i].words.sort((a, b) =>
+                  a.word.localeCompare(b.word)
+                )
+              );
             }
           }
         }
@@ -30,24 +33,28 @@ export default function Translations({ wordId }) {
 
     fetchTranslationsData();
   }, [wordId]);
-  
-  let content = <p>There is no translations for this word.</p>
-  if (translationsData.length > 0){
-    content = 
-    (
+
+  let content = <p>There is no translations for this word.</p>;
+  if (translationsData.length > 0) {
+    content = (
       <ul>
-        {translationsData.map((translation) => (translation._id !== wordId &&
-          <li key={translation._id}>{translation.word} - {translation.language.name}</li>
-        ))}
+        {translationsData.map(
+          (translation) =>
+            translation._id !== wordId && (
+              <li key={translation._id}>
+                {translation.word} - {translation.language.name}
+              </li>
+            )
+        )}
       </ul>
-    )
+    );
   }
 
   return (
     <>
       <div className="list-area">
         <h3>Translations</h3>
-        {content}
+        {!isFetching && content}
       </div>
     </>
   );
