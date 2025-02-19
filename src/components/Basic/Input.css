@@ -1,41 +1,18 @@
-.input-paragraph p{
-  display: flex;
-  flex-direction: column;
-  gap: 0.25;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.input-paragraph label{
-  font-size: smaller;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: rgb(99, 96, 96);
-}
-
-.input-paragraph input, textarea{
-  resize: none;
-  width: 100%;
-  padding: 0.25rem;
+input{
+  height: 1.5rem;
+  margin-right: 0.2rem;
+  margin-bottom: 0.2rem;
+  border-radius: 0.1rem;
   border: 0;
-  border-bottom: 3px solid #838181;
-  background-color: rgb(234, 232, 232);
-  color: rgb(93, 92, 92);
-  outline-style: none;
-  font-family: inherit;
-}
-
-.input-paragraph input:focus {
   outline: none;
-  border: 2px solid #6d6b6b;  
+  border: 1.6px solid #838383;
 }
 
-.input-paragraph button{
-  background-color: rgb(114, 113, 113);
-  color: rgb(188, 187, 187);
+label{
+  margin-bottom: 0.2rem;
 }
 
-button:hover {
-  background-color: rgb(83, 81, 81);
-  color: white;
+#acronym{
+  width: 25%;
+  margin-bottom: 0.5rem;
 }

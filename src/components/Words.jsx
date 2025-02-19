@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { fetchWords, addWord } from "../api/wordApi";
 import "./Word.css";
 import Button from "./Basic/Button";
+import Title from "./Basic/Title";
+import Input from "./Basic/Input";
 
 // eslint-disable-next-line react/prop-types
 export default function Words({ languageId, onWordClick }) {
@@ -44,6 +46,11 @@ export default function Words({ languageId, onWordClick }) {
   //   }
   // }
 
+  
+  function handleAddWord(){
+    
+  }
+  
   let content = <p>There is no words for this language.</p>;
   if (wordsData.length > 0) {
     content = (
@@ -64,13 +71,10 @@ export default function Words({ languageId, onWordClick }) {
 
   return (
     <div className="list-area">
-      <div className="title">
-        <h3>Words</h3>
-        <Button>Add</Button>      
-      </div>
+      <Title title="Words"></Title>
       <div className="add-list">
-        <input ref={word} label="add a word" />        
-        <Button onClick={addWord}>Save</Button>
+        <Input label="New word" ref={word}/>    
+        <Button id="save" onClick={handleAddWord}>Save</Button>
       </div>
       {!isFetching && content}
     </div>

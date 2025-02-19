@@ -1,0 +1,16 @@
+.title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.title h1{
+  padding-left: 0.3rem;
+  font-size: larger;
+}
+
+.button-add{
+  width: 10%;
+  height: 10%;  
+}

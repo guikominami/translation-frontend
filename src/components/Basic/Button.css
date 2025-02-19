@@ -1,14 +1,19 @@
 .button{
-  padding: 0.2rem 0.8rem 0.2rem 0.8rem;
-  height: 40%;
+  padding: 0.3rem 0.6rem;
+  justify-content: center;
   font-size: small;
   border-radius: 0.4rem; 
   background-color: #606eeb;
   color: rgb(255, 255, 255);
   border-style: none;
+  font-weight: 300;
 }
 
 .button:hover {
   background-color: #353d8c;
   color: white;
+}
+
+#save{
+  align-self: flex-end;
 }

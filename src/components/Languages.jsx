@@ -1,8 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import { fetchLanguages, addLanguage } from "../api/languageApi";
+
 import Modal from "./Basic/Modal";
 import Error from "./Error";
 import Button from "./Basic/Button";
+import Title from "./Basic/Title";
+import Input from "./Basic/Input";
 
 import "./Language.css";
 
@@ -11,6 +14,7 @@ export default function Languages({ onLanguageClick }) {
   const [languagesData, setLanguagesData] = useState([]);
   const [isFetching, setIsFetching] = useState();
   const [error, setError] = useState();
+  const [isAddLanguage, setIsAddLanguage] = useState(false);
 
   const language = useRef(null);
   const acronym = useRef(null);
@@ -55,6 +59,10 @@ export default function Languages({ onLanguageClick }) {
   function handleError() {
     setError(null);
   }
+  
+  function handleButtonClick(){
+    setIsAddLanguage(!isAddLanguage)
+  }
 
   return (
     <>
@@ -68,25 +76,14 @@ export default function Languages({ onLanguageClick }) {
         )}
       </Modal>
       <div className="list-area">
-        <div className="title">
-          <h3>Language</h3>
-          <Button>Add</Button>
-        </div>
-        <div className="add-list">
-          <input
-            ref={language}
-            placeholder="Language"
-            
-          />
-          <input 
-            ref={acronym} 
-            placeholder="Acronym" 
-            id="acronym"
-          />
-          <Button onClick={handleAddLanguage}>
-            Save
-          </Button>
-        </div>
+        <Title title="Language" onButtonClick={handleButtonClick}/>
+        {isAddLanguage && (
+          <div className="add-list">
+            <Input label="New Language" ref={language} />
+            <Input label="Acronym" ref={acronym} id="acronym" />
+            <Button id="save" onClick={handleAddLanguage}>Save</Button>
+          </div>
+        )}
         <ul>
           {!isFetching &&
             languagesData.map((language) => (
