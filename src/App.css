@@ -7,6 +7,10 @@
   font-family: "Outfit";
 }
 
+.main-page{
+  background-color: #f8f9ff;
+}
+
 .main-area{
   display: flex;
   flex-direction: row;
@@ -16,7 +20,7 @@
 
 .list-area{
   width: 25%;
-  background-color: rgb(235, 232, 232);
+  background-color: #ecedf6;
   padding: 2rem;
   border-radius: 1rem;
   margin-right: 1rem;
@@ -48,9 +52,9 @@
 }
 
 .main-area li{
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
   background-color: rgb(255, 255, 255);
-  padding: 0.3rem;
+  padding: 0.5rem;
   border-radius: 0.3rem;
 }
 

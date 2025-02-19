@@ -24,14 +24,16 @@ function App() {
   }
 
   return (
-    <section className="main-area">
-      <Languages onLanguageClick={handleLanguageSelect} />
-      {languageId !== undefined && (
-        <Words languageId={languageId} onWordClick={handleWordSelect} />
-      )}
-      {languageId !== undefined && wordId !== undefined && (
-        <Translations wordId={wordId} languageId={languageId}/>
-      )}
+    <section className="main-page">
+      <div className="main-area">
+        <Languages onLanguageClick={handleLanguageSelect} />
+        {languageId !== undefined && (
+          <Words languageId={languageId} onWordClick={handleWordSelect} />
+        )}
+        {languageId !== undefined && wordId !== undefined && (
+          <Translations wordId={wordId} languageId={languageId}/>
+        )}
+      </div>
     </section>
   );
 }

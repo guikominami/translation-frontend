@@ -1,8 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import { fetchLanguages } from "../api/https";
 import { addLanguage } from "../api/languageApi";
-import Modal from "./Modal";
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Button from '@mui/material';
+import Modal from "./Basic/Modal";
 import Error from "./Error";
+
 import "./Language.css";
 
 // eslint-disable-next-line react/prop-types
@@ -69,7 +73,10 @@ export default function Languages({ onLanguageClick }) {
       <div className="list-area">
         <div className="title">
           <h3>Language</h3>
-          <button className="button-add">+</button>
+          <IconButton aria-label="delete">
+            <DeleteIcon />
+          </IconButton>
+
         </div>
 
         <div className="add-list">
@@ -83,7 +90,9 @@ export default function Languages({ onLanguageClick }) {
             label="add a acronym" 
             className="input-acronym" 
           />
-          <button onClick={handleAddLanguage}>Save</button>
+          <Button aria-label="delete" onClick={handleAddLanguage}>
+            Add
+          </Button>
         </div>
         <ul>
           {!isFetching &&
