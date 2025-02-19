@@ -8,14 +8,14 @@
 }
 
 .main-page{
-  background-color: #f8f9ff;
+  background-color: #f8f9ff; 
 }
 
 .main-area{
   display: flex;
   flex-direction: row;
   justify-content: left;
-  margin: 5rem 20rem 0 20rem;
+  padding: 2rem 20rem 3rem 20rem;
 }
 
 .list-area{
@@ -44,8 +44,19 @@
 .add-list{
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   margin-bottom: 0.5rem;
 }
+
+.add-list input{
+  width: 80%;
+  margin-right: 0.2rem;
+  border-radius: 0.1rem;
+  border: 0;
+  outline: none;
+  border: 1.6px solid #838383;
+}
+
 
 .main-area ul{
   list-style: none;
@@ -59,7 +70,7 @@
 }
 
 .main-area li:hover{
-  background-color: rgb(220, 204, 204);
+  background-color: rgb(205, 198, 198);
 }
 
 .main.area li:active,
@@ -67,6 +78,7 @@
   background-color: rgb(162, 122, 122);
   color: white;
 }
+
 
 @media screen and (max-width: 930px) {
   .main-area{

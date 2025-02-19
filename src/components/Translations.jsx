@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchTranslations } from "../api/https";
+import { fetchTranslations } from "../api/translationApi";
 
 // eslint-disable-next-line react/prop-types
 export default function Translations({ wordId }) {

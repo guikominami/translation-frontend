@@ -1,11 +1,8 @@
 import { useEffect, useState, useRef } from "react";
-import { fetchLanguages } from "../api/https";
-import { addLanguage } from "../api/languageApi";
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Button from '@mui/material';
+import { fetchLanguages, addLanguage } from "../api/languageApi";
 import Modal from "./Basic/Modal";
 import Error from "./Error";
+import Button from "./Basic/Button";
 
 import "./Language.css";
 
@@ -73,25 +70,21 @@ export default function Languages({ onLanguageClick }) {
       <div className="list-area">
         <div className="title">
           <h3>Language</h3>
-          <IconButton aria-label="delete">
-            <DeleteIcon />
-          </IconButton>
-
+          <Button>Add</Button>
         </div>
-
         <div className="add-list">
           <input
             ref={language}
-            label="add a language"
-            className="input-language-name"
+            placeholder="Language"
+            
           />
           <input 
             ref={acronym} 
-            label="add a acronym" 
-            className="input-acronym" 
+            placeholder="Acronym" 
+            id="acronym"
           />
-          <Button aria-label="delete" onClick={handleAddLanguage}>
-            Add
+          <Button onClick={handleAddLanguage}>
+            Save
           </Button>
         </div>
         <ul>
@@ -101,7 +94,7 @@ export default function Languages({ onLanguageClick }) {
                 key={language._id}
                 onClick={() => onLanguageClick(language._id)}
               >
-                {language.name}
+                {language.name} - {language.acronym.toUpperCase()}
               </li>
             ))}
         </ul>
