@@ -10,6 +10,9 @@ export async function fetchWords(){
 }
 
 export async function addWord(word){
+  
+  console.log("word api", word)
+  
   const response = await fetch("http://localhost:3000/api/words", {
     method: "POST",
     body: JSON.stringify({ word }),
@@ -18,14 +21,14 @@ export async function addWord(word){
     },
   })
 
-  if (!response.ok) {
-    throw new Error("Failed to update user data.");
-  }
-
   const responseData = await response.json();
   
   console.log(responseData);
   
+  if (!response.ok) {
+    throw new Error(responseData.error);
+  }
+
   return responseData;  
 }
 

@@ -14,7 +14,7 @@ export default function Languages({ onLanguageClick }) {
   const [languagesData, setLanguagesData] = useState([]);
   const [isFetching, setIsFetching] = useState();
   const [error, setError] = useState();
-  const [isAddLanguage, setIsAddLanguage] = useState(false);
+  const [isAddingLanguage, setIsAddingLanguage] = useState(false);
 
   const language = useRef(null);
   const acronym = useRef(null);
@@ -37,12 +37,15 @@ export default function Languages({ onLanguageClick }) {
   }, []);
 
   async function handleAddLanguage() {
+    
     const enteredLanguage = language.current.value;
     const enteredAcronym = acronym.current.value;
 
-    console.log("enteredLanguage", enteredLanguage);
-    console.log("enteredAcronym", enteredAcronym);
-
+    if (enteredLanguage.trim() === "" || enteredAcronym.trim() === "") {
+      setError("Looks like you forgot to enter a value.");
+      return;
+    }
+    
     const newLanguage = {
       name: enteredLanguage,
       acronym: enteredAcronym,
@@ -50,6 +53,12 @@ export default function Languages({ onLanguageClick }) {
 
     try {
       await addLanguage(newLanguage);
+      
+      setLanguagesData((prevState) => [...prevState, newLanguage]);
+      
+      language.current.value = "";
+      acronym.current.value = "";
+      
     } catch (error) {
       console.log(error.message);
       setError("Failed to add language. " + error.message);
@@ -61,7 +70,7 @@ export default function Languages({ onLanguageClick }) {
   }
   
   function handleButtonClick(){
-    setIsAddLanguage(!isAddLanguage)
+    setIsAddingLanguage(!isAddingLanguage)
   }
 
   return (
@@ -76,12 +85,18 @@ export default function Languages({ onLanguageClick }) {
         )}
       </Modal>
       <div className="list-area">
-        <Title title="Language" onButtonClick={handleButtonClick}/>
-        {isAddLanguage && (
+        <Title
+          title="Language"
+          onButtonClick={handleButtonClick}
+          buttonName={isAddingLanguage ? "Close" : "Add"}
+        />
+        {isAddingLanguage && (
           <div className="add-list">
             <Input label="New Language" ref={language} />
             <Input label="Acronym" ref={acronym} id="acronym" />
-            <Button id="save" onClick={handleAddLanguage}>Save</Button>
+            <Button id="save" onClick={handleAddLanguage}>
+              Save
+            </Button>
           </div>
         )}
         <ul>
