@@ -9,21 +9,16 @@ export async function fetchWords(){
   return responseData;
 }
 
-export async function addWord(word){
-  
-  console.log("word api", word)
-  
+export async function addWord(newWord){ 
   const response = await fetch("http://localhost:3000/api/words", {
     method: "POST",
-    body: JSON.stringify({ word }),
+    body: JSON.stringify( newWord ),
     headers: {
       "Content-Type": "application/json",
     },
   })
 
   const responseData = await response.json();
-  
-  console.log(responseData);
   
   if (!response.ok) {
     throw new Error(responseData.error);

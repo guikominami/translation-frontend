@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { fetchWords, addWord } from "../api/wordApi";
-import "./Word.css";
+import "./Words.css";
 import Button from "./Basic/Button";
 import Title from "./Basic/Title";
 import Input from "./Basic/Input";
+import Modal from "./Basic/Modal";
+import Error from "./Error";
 
 // eslint-disable-next-line react/prop-types
 export default function Words({ languageId, onWordClick }) {
@@ -44,16 +46,24 @@ export default function Words({ languageId, onWordClick }) {
       return;
     }
     
-    const newWord = {
+    let newWord = {
       word: enteredWord,
       languageId: languageId
     }
-
-    console.log("newWord", newWord)
     
     try {
-      await addWord(newWord);
+      const responseApi = await addWord(newWord);
+
+      newWord = {
+        _id: responseApi._id,
+        word: enteredWord,
+        languageId: languageId
+      }
+            
       setWordsData((prevState)=> [...prevState, newWord]);
+      
+      word.current.value = "";
+      
     } catch (error) {
       setError("Failed to add word. " + error.message);
     }
@@ -61,6 +71,10 @@ export default function Words({ languageId, onWordClick }) {
 
   function handleButtonClick() {
     setIsAddingWord(!isAddingWord);
+  }
+  
+  function handleError() {
+    setError(null);
   }
 
   let content = <p>There is no words for this language.</p>;
@@ -76,27 +90,33 @@ export default function Words({ languageId, onWordClick }) {
     );
   }
 
-  // function handleChange(event){
-  //   console.log(event.target.value);
-  //   word = event.target.value;
-  // }
-
   return (
-    <div className="list-area">
-      <Title
-        title="Words"
-        onButtonClick={handleButtonClick}
-        buttonName={isAddingWord ? "Close" : "Add"}
-      />
-      {isAddingWord && (
-        <div className="add-list">
-          <Input label="New word" ref={word} />
-          <Button id="save" onClick={handleAddWord}>
-            Save
-          </Button>
-        </div>
-      )}
-      {!isFetching && content}
-    </div>
+    <>
+      <Modal open={error} onClose={handleError}>
+        {error && (
+          <Error
+            title="An error occurred!"
+            message={error}
+            onConfirm={handleError}
+          />
+        )}
+      </Modal>
+      <div className="list-area">
+        <Title
+          title="Words"
+          onButtonClick={handleButtonClick}
+          buttonName={isAddingWord ? "Close" : "Add"}
+        />
+        {isAddingWord && (
+          <div className="add-list">
+            <Input label="New word" ref={word} />
+            <Button id="save" onClick={handleAddWord}>
+              Save
+            </Button>
+          </div>
+        )}
+        {!isFetching && content}
+      </div>
+    </>
   );
 }

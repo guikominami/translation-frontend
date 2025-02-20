@@ -7,7 +7,7 @@ import Button from "./Basic/Button";
 import Title from "./Basic/Title";
 import Input from "./Basic/Input";
 
-import "./Language.css";
+import "./Languages.css";
 
 // eslint-disable-next-line react/prop-types
 export default function Languages({ onLanguageClick }) {
@@ -46,13 +46,19 @@ export default function Languages({ onLanguageClick }) {
       return;
     }
     
-    const newLanguage = {
+    let newLanguage = {
       name: enteredLanguage,
       acronym: enteredAcronym,
     };
 
-    try {
-      await addLanguage(newLanguage);
+    try {    
+      const responseApi = await addLanguage(newLanguage);
+      
+      newLanguage = {
+        _id: responseApi._id,
+        name: enteredLanguage,
+        acronym: enteredAcronym,
+      };
       
       setLanguagesData((prevState) => [...prevState, newLanguage]);
       
@@ -60,7 +66,6 @@ export default function Languages({ onLanguageClick }) {
       acronym.current.value = "";
       
     } catch (error) {
-      console.log(error.message);
       setError("Failed to add language. " + error.message);
     }
   }
