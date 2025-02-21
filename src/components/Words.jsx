@@ -83,7 +83,7 @@ export default function Words({ languageId, onWordClick }) {
   let content = <p>There is no words for this language.</p>;
   if (wordsData.length > 0) {
     content = (
-      <div className="div-list">
+      <div className={!isAddingWord ? "div-list" : "div-list div-list-reduced"}>
         <ul className="list">
           {wordsData.map((word) => (
             <li key={word._id} onClick={() => onWordClick(word._id)}>

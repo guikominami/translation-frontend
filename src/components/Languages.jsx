@@ -26,7 +26,9 @@ export default function Languages({ onLanguageClick }) {
 
       try {
         const languages = await fetchLanguages();
-        setLanguagesData(languages);
+        setLanguagesData(
+          languages.sort((a, b) => a.name.localeCompare(b.name))
+        );
       } catch (error) {
         console.log("error: ", error);
       }
@@ -61,6 +63,7 @@ export default function Languages({ onLanguageClick }) {
       };
 
       setLanguagesData((prevState) => [...prevState, newLanguage]);
+      languagesData.sort((a, b) => a.name.localeCompare(b.name));
 
       language.current.value = "";
       acronym.current.value = "";
@@ -103,7 +106,11 @@ export default function Languages({ onLanguageClick }) {
             </Button>
           </div>
         )}
-        <div className="div-list">
+        <div
+          className={
+            !isAddingLanguage ? "div-list" : "div-list div-list-reduced"
+          }
+        >
           <ul className="list">
             {!isFetching &&
               languagesData.map((language) => (

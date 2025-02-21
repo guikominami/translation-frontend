@@ -59,7 +59,7 @@ export default function Translations({ wordId }) {
   let content = <p>There is no translations for this word.</p>;
   if (translationsData.length > 0) {
     content = (
-      <div className="div-list">
+      <div className={!isAddingTranslation ? "div-list" : "div-list div-list-reduced"}>
         <ul className="list">
           {translationsData.map(
             (translation) =>
@@ -87,7 +87,7 @@ export default function Translations({ wordId }) {
       </Modal>
       <div className="list-area">
         <Title
-          title="Words"
+          title="Translations"
           onButtonClick={handleButtonClick}
           buttonName={isAddingTranslation ? "Close" : "Add"}
         />
