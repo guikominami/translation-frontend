@@ -14,51 +14,11 @@
 .main-area{
   display: flex;
   flex-direction: row;
-  justify-content: left;
-  padding: 2rem 20rem 3rem 20rem;
+  padding: 1rem 20rem 1rem 20rem;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
 }
-
-.list-area{
-  width: 25%;
-  background-color: #ecedf6;
-  padding: 2rem;
-  border-radius: 1rem;
-  margin-right: 1rem;
-}
-
-.add-list{
-  display: flex;
-  flex-direction: column;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  background-color: #dddfee;
-  padding: 0.5rem;
-  border-radius: 0.2rem;
-  font-size: smaller;
-}
-
-.main-area ul{
-  list-style: none;
-}
-
-.main-area li{
-  margin-bottom: 0.3rem;
-  background-color: rgb(255, 255, 255);
-  padding: 0.5rem;
-  border-radius: 0.3rem;
-  font-size: 0.9rem;
-}
-
-.main-area li:hover{
-  background-color: rgb(205, 198, 198);
-}
-
-.main.area li:active,
-.main.area li:visited {
-  background-color: rgb(162, 122, 122);
-  color: white;
-}
-
 
 @media screen and (max-width: 930px) {
   .main-area{

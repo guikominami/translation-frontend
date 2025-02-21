@@ -5,6 +5,7 @@ import Title from "./Basic/Title";
 import Input from "./Basic/Input";
 import Modal from "./Basic/Modal";
 import Error from "./Error";
+import "./List.css"
 
 // eslint-disable-next-line react/prop-types
 export default function Translations({ wordId }) {
@@ -58,16 +59,18 @@ export default function Translations({ wordId }) {
   let content = <p>There is no translations for this word.</p>;
   if (translationsData.length > 0) {
     content = (
-      <ul>
-        {translationsData.map(
-          (translation) =>
-            translation._id !== wordId && (
-              <li key={translation._id}>
-                {translation.word} - {translation.language.name}
-              </li>
-            )
-        )}
-      </ul>
+      <div className="div-list">
+        <ul className="list">
+          {translationsData.map(
+            (translation) =>
+              translation._id !== wordId && (
+                <li key={translation._id}>
+                  {translation.word} - {translation.language.name}
+                </li>
+              )
+          )}
+        </ul>
+      </div>
     );
   }
 

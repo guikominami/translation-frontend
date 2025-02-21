@@ -8,6 +8,7 @@ import Title from "./Basic/Title";
 import Input from "./Basic/Input";
 
 import "./Languages.css";
+import "./List.css";
 
 // eslint-disable-next-line react/prop-types
 export default function Languages({ onLanguageClick }) {
@@ -37,7 +38,6 @@ export default function Languages({ onLanguageClick }) {
   }, []);
 
   async function handleAddLanguage() {
-    
     const enteredLanguage = language.current.value;
     const enteredAcronym = acronym.current.value;
 
@@ -45,26 +45,25 @@ export default function Languages({ onLanguageClick }) {
       setError("Looks like you forgot to enter a value.");
       return;
     }
-    
+
     let newLanguage = {
       name: enteredLanguage,
       acronym: enteredAcronym,
     };
 
-    try {    
+    try {
       const responseApi = await addLanguage(newLanguage);
-      
+
       newLanguage = {
         _id: responseApi._id,
         name: enteredLanguage,
         acronym: enteredAcronym,
       };
-      
+
       setLanguagesData((prevState) => [...prevState, newLanguage]);
-      
+
       language.current.value = "";
       acronym.current.value = "";
-      
     } catch (error) {
       setError("Failed to add language. " + error.message);
     }
@@ -73,9 +72,9 @@ export default function Languages({ onLanguageClick }) {
   function handleError() {
     setError(null);
   }
-  
-  function handleButtonClick(){
-    setIsAddingLanguage(!isAddingLanguage)
+
+  function handleButtonClick() {
+    setIsAddingLanguage(!isAddingLanguage);
   }
 
   return (
@@ -104,17 +103,19 @@ export default function Languages({ onLanguageClick }) {
             </Button>
           </div>
         )}
-        <ul>
-          {!isFetching &&
-            languagesData.map((language) => (
-              <li
-                key={language._id}
-                onClick={() => onLanguageClick(language._id)}
-              >
-                {language.name} - {language.acronym.toUpperCase()}
-              </li>
-            ))}
-        </ul>
+        <div className="div-list">
+          <ul className="list">
+            {!isFetching &&
+              languagesData.map((language) => (
+                <li
+                  key={language._id}
+                  onClick={() => onLanguageClick(language._id)}
+                >
+                  {language.name} - {language.acronym.toUpperCase()}
+                </li>
+              ))}
+          </ul>
+        </div>
       </div>
     </>
   );

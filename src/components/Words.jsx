@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { fetchWords, addWord } from "../api/wordApi";
-import "./Words.css";
+
 import Button from "./Basic/Button";
 import Title from "./Basic/Title";
 import Input from "./Basic/Input";
 import Modal from "./Basic/Modal";
 import Error from "./Error";
+
+import "./List.css"
+import "./Words.css";
 
 // eslint-disable-next-line react/prop-types
 export default function Words({ languageId, onWordClick }) {
@@ -80,13 +83,15 @@ export default function Words({ languageId, onWordClick }) {
   let content = <p>There is no words for this language.</p>;
   if (wordsData.length > 0) {
     content = (
-      <ul>
-        {wordsData.map((word) => (
-          <li key={word._id} onClick={() => onWordClick(word._id)}>
-            {word.word}
-          </li>
-        ))}
-      </ul>
+      <div className="div-list">
+        <ul className="list">
+          {wordsData.map((word) => (
+            <li key={word._id} onClick={() => onWordClick(word._id)}>
+              {word.word}
+            </li>
+          ))}
+        </ul>
+      </div>
     );
   }
 

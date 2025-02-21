@@ -1,0 +1,54 @@
+.list-area{
+  width: 25%;
+  height: 34.8rem;
+  background-color: #ecedf6;
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-right: 1rem;
+  justify-content: center;
+}
+
+.div-list{
+  display: flex;
+  justify-content: center;
+  height: 31.8rem; 
+  width: 100%;
+  overflow: auto;
+  background-color: red;
+}
+
+.list{
+  width: 13rem;
+  list-style: none;
+  overflow: auto;
+}
+
+.list li{
+  margin-bottom: 0.3rem;
+  background-color: rgb(255, 255, 255);
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.list li:hover{
+  background-color: rgb(205, 198, 198);
+}
+
+.list li:active,
+.list li:visited {
+  background-color: rgb(162, 122, 122);
+  color: white;
+}
+
+.add-list{
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: #dddfee;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  font-size: smaller;
+  background-color: red;
+}
