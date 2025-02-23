@@ -59,7 +59,7 @@ export default function Translations({ wordId }) {
   let content = <p>There is no translations for this word.</p>;
   if (translationsData.length > 0) {
     content = (
-      <div className={!isAddingTranslation ? "div-list" : "div-list div-list-reduced"}>
+      <div className="div-list">
         <ul className="list">
           {translationsData.map(
             (translation) =>
@@ -88,17 +88,7 @@ export default function Translations({ wordId }) {
       <div className="list-area">
         <Title
           title="Translations"
-          onButtonClick={handleButtonClick}
-          buttonName={isAddingTranslation ? "Close" : "Add"}
         />
-        {isAddingTranslation && (
-          <div className="add-list">
-            <Input label="New word" ref={translation} />
-            <Button id="save" onClick={handleAddTranslation}>
-              Save
-            </Button>
-          </div>
-        )}
         {!isFetching && content}
       </div>
     </>
