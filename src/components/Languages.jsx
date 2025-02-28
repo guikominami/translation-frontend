@@ -1,39 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchLanguages } from "../utils/https";
+import { fetchLanguages } from "../utils/Language/https";
 
 import LanguagesList from "../components/LanguagesList";
 import NewLanguage from "../components/NewLanguage";
 import ErrorBlock from "../UI/ErrorBlock";
+import LoadingIndicator from "../UI/LoadingIndicator";
 
-import Language from "../models/language";
+import "./Languages.css";
 
 export default function Languages() {
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["languages"],
     queryFn: fetchLanguages,
-    staleTime: 5000,
+    staleTime: 1000,
   });
 
   console.log(data);
 
-  function addLanguageHandler(language) {
-    // const newLanguage = new Language(language);
-    // setLanguages((prevState) => {
-    //   return prevState.concat(newLanguage);
-    // });
-  }
-
-  function removeLanguageHandler(id) {
-    // console.log(id);
-    // setLanguages((prevState) => {
-    //   return prevState.filter((language) => language.id !== id);
-    // });
-  }
-
   let content;
 
   if (isPending) {
-    content = <p>Loading</p>;
+    content = <LoadingIndicator />;
   }
 
   if (isError) {
@@ -49,14 +36,14 @@ export default function Languages() {
     content = (
       <LanguagesList
         languages={data}
-        onRemoveLanguage={removeLanguageHandler}
       />
     );
   }
 
   return (
-    <div>
-      <NewLanguage onAddLanguage={addLanguageHandler} />
+    <div className="main">
+      <h1>Languages</h1>
+      <NewLanguage/>
       {content}
     </div>
   );
