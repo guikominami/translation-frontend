@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import "./LanguageItem.css";
 
-export default function LanguageItem({ languages, onLanguageItemClick }) {
+export default function LanguageItem({ languages, onLanguageItemClick }) {  
   return (
     <>
       {languages.map((item) => (

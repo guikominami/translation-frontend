@@ -44,7 +44,7 @@ export async function createNewLanguage(newLanguage) {
 }
 
 export async function deleteLanguage(id){
-  await fetch("http://localhost:3000/api/languages/" & id, {
+  await fetch(`http://localhost:3000/api/languages/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
